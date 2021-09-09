@@ -1,0 +1,194 @@
+//
+// Card
+//
+
+.card-translucent {
+  background-color: rgba(18, 91, 152, 0.08);
+}
+
+.noticeMent {
+  padding: 0.5em 1em;
+  background-color: #ffffff;
+  border-radius: 10px;
+
+  p {
+    font-size: 1.1em;
+    line-height: 1.5em;
+    margin-bottom: 0;
+  }
+}
+
+.postWrap {
+  .imageThumbnail {
+    color: $white;
+    background-color: $gray-500;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 1rem;
+    width: 100%;
+    height: 203px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+  }
+  p {
+    font-weight: 400;
+    line-height: 1.35;
+    color: #32325d;
+    padding: 5px 10px 0;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
+
+// 카테고리
+.firstPostWrap {
+  padding-top: 8em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 3em;
+  }
+  p + p {
+    font-size: 5em;
+  }
+}
+
+// 카테고리 추가
+.categoryAddWrap {
+  .addWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .postWrap {
+      max-width: 80%;
+      min-width: 70%;
+      .card-stats {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        form {
+          width: 60%;
+          ul {
+            padding-left: 0;
+            list-style: none;
+            .inputStyle {
+              border: none !important;
+              border-bottom: 1px solid !important;
+              border-radius: 0 !important;
+            }
+
+            li {
+              .imageThumbnail {
+                position: relative;
+                width: 120px;
+                height: auto;
+                margin: 0 auto;
+                overflow: hidden;
+                img {
+                  height: auto;
+                }
+                .removeBtnWrap {
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  width: 30px;
+                  height: 30px;
+                  text-align: center;
+                  vertical-align: middle;
+                  background-color: rgba(0, 0, 0, 0.6);
+                  button {
+                    padding: 0;
+                    width: auto;
+                    font-size: 1em;
+                    color: #ffffff;
+                    background-color: transparent;
+                    border: none;
+                  }
+                }
+              }
+            }
+          }
+          .btnWrap {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 포스트 보기
+
+.postViewWrap {
+  .postHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// 포스트 생성하기
+.postCreateWrap {
+  max-width: 900px;
+
+  .imageThumbnail {
+    position: relative;
+    width: 120px;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    img {
+      height: auto;
+    }
+    .removeBtnWrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      vertical-align: middle;
+      background-color: rgba(0, 0, 0, 0.6);
+      button {
+        padding: 0;
+        width: auto;
+        font-size: 1em;
+        color: #ffffff;
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+
+  select {
+    max-width: 300px;
+    min-width: 180px;
+    width: auto;
+  }
+
+  dl {
+    display: flex;
+    justify-content: space-between;
+    dt {
+      width: 180px;
+      vertical-align: middle;
+    }
+    dd {
+      width: calc(100% - 180px);
+      vertical-align: top;
+    }
+  }
+
+  dl + dl {
+    margin-top: 30px;
+  }
+}

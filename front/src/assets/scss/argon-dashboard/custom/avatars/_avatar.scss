@@ -1,0 +1,109 @@
+//
+// Avatar
+//
+
+// General styles
+
+// mixin 반응형 참조
+
+.avatar {
+	color: $white;
+	background-color: $gray-500;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
+	border-radius: 50%;
+	height: 48px;
+	width: 48px;
+
+    img {
+    	width: 100%;
+    	border-radius: 50%;
+    }
+
+    + .avatar-content {
+    	display: inline-block;
+    	margin-left: .75rem;
+    }
+}
+
+.avatar-main-wrap{
+
+	display: block;
+
+		.avatar-main {
+			color: $white;
+			background-color: $gray-500;
+			align-items: center;
+			text-align: center;
+			justify-content: center;
+			font-size: 1rem;
+			border-radius: 50%;
+			width: 70%;
+			height: 70%;
+			margin: 0 auto;
+			text-align: center;
+				img {
+					width: 100%;
+					border-radius: 50%;
+				}
+		
+				+ .avatar-content {
+					display: inline-block;
+					margin-left: .75rem;
+				}
+		}
+		.media{
+			margin-top: .5em;
+			text-align: center;
+		}
+
+	
+}
+
+
+
+
+// Avatar size variations
+
+.avatar-lg {
+	width: 58px;
+	height: 58px;
+	font-size: $font-size-sm;
+}
+
+.avatar-sm {
+	width: 36px;
+	height: 36px;
+	font-size: $font-size-sm;
+}
+
+
+@include media-breakpoint-down(xxl) {
+       
+	.container-fluid{
+			.avatar-main-wrap{
+					display: flex;
+					justify-content: center;
+					align-content: center;
+					.avatar-main{
+							width: 20%;
+							margin: inherit;
+					 } 
+					 .flexbox{
+						 display: flex;
+						 flex-direction: column;
+						 align-items: center;
+							span{
+								display: inline-block;
+								padding-left: 15px;
+								font-size: 1.3em;
+							}
+					 }
+					 
+			}
+				
+	}
+
+}
