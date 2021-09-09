@@ -316,9 +316,7 @@ const Sidebar = (props) => {
             </InputGroup>
           </Form>
           {/* Navigation */}
-          <Nav navbar>
-            <Navigation />
-          </Nav>
+          <Navigation />
 
           {/* Navigation */}
           {/* <Nav className='mb-md-3' navbar>
