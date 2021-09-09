@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Card, CardBody, CardHeader, Container, Row, Col } from 'reactstrap';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import PostBg from 'components/Headers/PostBg';
-import DeleteModal from './DeleteModal';
+import DeleteModal from '../DeleteModal';
 
 const Post = () => {
   // 내 아이디 값 불러오는...건데
