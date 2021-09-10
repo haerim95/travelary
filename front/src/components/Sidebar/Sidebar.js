@@ -9,17 +9,11 @@ import { PropTypes } from 'prop-types';
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -31,8 +25,6 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col,
@@ -274,19 +266,9 @@ const Sidebar = (props) => {
           {/* Collapse header */}
           <div className='navbar-collapse-header d-md-none'>
             <Row>
-              {logo ? (
-                <Col className='collapse-brand' xs='6'>
-                  {logo.innerLink ? (
-                    <Link to={logo.innerLink}>
-                      <img alt={logo.imgAlt} src={logo.imgSrc} />
-                    </Link>
-                  ) : (
-                    <a href={logo.outterLink}>
-                      <img alt={logo.imgAlt} src={logo.imgSrc} />
-                    </a>
-                  )}
-                </Col>
-              ) : null}
+              <Col className='collapse-brand' xs='6'>
+                <Link to='/'>Travelary</Link>
+              </Col>
               <Col className='collapse-close' xs='6'>
                 <button
                   className='navbar-toggler'
@@ -348,7 +330,7 @@ Sidebar.propTypes = {
     // it will be rendered as simple <a href="...">...</a> tag
     outterLink: PropTypes.string,
     // the image src of the logo
-    imgSrc: PropTypes.string.isRequired,
+    // imgSrc: PropTypes.string.isRequired,
     // the alt for the img
     imgAlt: PropTypes.string.isRequired,
   }),

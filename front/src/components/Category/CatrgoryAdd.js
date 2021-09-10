@@ -9,9 +9,10 @@ import {
   ADD_CATEGORY_REQUEST,
   UPLOAD_IMAGES_REQUEST,
   REMOVE_IMAGE,
-} from 'reducer/post';
-import useInput from 'helpers/useInput';
+} from '../../reducer/post';
+import useInput from '../../helpers/useInput';
 import { getLoginMember } from '../../helpers/authUtils';
+import Main from './Main';
 
 const CatrgoryAdd = () => {
   // 데이터 담는 함수
@@ -82,83 +83,85 @@ const CatrgoryAdd = () => {
       setCategoryName('');
       // imagePaths = [];
       onRemoveImage();
-      history.push('/admin/index');
+      history.push('/');
     }
   }, [addCategoryDone, imagePaths]);
 
   return (
-    <div className='pb-8 pt-2 pt-md-7 categoryAddWrap'>
-      <Container fluid>
-        <Row className='addWrap'>
-          <Col lg='6' xl='12' className='postWrap'>
-            <Card className='card-stats mb-4 mb-xl-0 pt-6 pb-6'>
-              <h4 className='mb-6'>당신의 여행 카테고리를 추가해주세요 :)</h4>
-              <Form encType='multipart/form-data' onSubmit={onSubmit}>
-                <ul>
-                  <li>
-                    <label>Category Title</label>
-                    <input
-                      type='text'
-                      className='form-control inputStyle'
-                      placeholder='Category Title'
-                      name='categoryName'
-                      value={categoryName}
-                      onChange={onChangeTitle}
-                      autoComplete='off'
-                    ></input>
-                  </li>
-                  <li className='mt-5'>
-                    <span>Thumbnail Image</span>
-                    <div className='custom-file'>
+    <Main>
+      <div className='pb-8 pt-2 pt-md-7 categoryAddWrap'>
+        <Container fluid>
+          <Row className='addWrap'>
+            <Col lg='6' xl='12' className='postWrap'>
+              <Card className='card-stats mb-4 mb-xl-0 pt-6 pb-6'>
+                <h4 className='mb-6'>당신의 여행 카테고리를 추가해주세요 :)</h4>
+                <Form encType='multipart/form-data' onSubmit={onSubmit}>
+                  <ul>
+                    <li>
+                      <label>Category Title</label>
                       <input
-                        type='file'
-                        className='custom-file-input'
-                        id='customFileLang'
-                        multiple
-                        // name='thumnailImg'
-                        name='image'
-                        ref={imageInput}
-                        onChange={onChangeImages}
-                      />
-                      <label
-                        className='custom-file-label inputStyle'
-                        for='customFileLang'
-                        onClick={onClickImageUpload}
-                      >
-                        Select file
-                      </label>
-                    </div>
-                    <div className='imageThumbnail mt-3'>
-                      {imagePaths.map((v, i) => (
-                        <div key={v} style={{ display: 'inline-block' }}>
-                          <img
-                            src={`http://localhost:3003/${v}`}
-                            style={{ width: '120px', height: '120px' }}
-                            alt={v}
-                          />
-                          <div className='removeBtnWrap'>
-                            <Button onClick={onRemoveImage(i)}>X</Button>
+                        type='text'
+                        className='form-control inputStyle'
+                        placeholder='Category Title'
+                        name='categoryName'
+                        value={categoryName}
+                        onChange={onChangeTitle}
+                        autoComplete='off'
+                      ></input>
+                    </li>
+                    <li className='mt-5'>
+                      <span>Thumbnail Image</span>
+                      <div className='custom-file'>
+                        <input
+                          type='file'
+                          className='custom-file-input'
+                          id='customFileLang'
+                          multiple
+                          // name='thumnailImg'
+                          name='image'
+                          ref={imageInput}
+                          onChange={onChangeImages}
+                        />
+                        <label
+                          className='custom-file-label inputStyle'
+                          for='customFileLang'
+                          onClick={onClickImageUpload}
+                        >
+                          Select file
+                        </label>
+                      </div>
+                      <div className='imageThumbnail mt-3'>
+                        {imagePaths.map((v, i) => (
+                          <div key={v} style={{ display: 'inline-block' }}>
+                            <img
+                              src={`http://localhost:3003/${v}`}
+                              style={{ width: '120px', height: '120px' }}
+                              alt={v}
+                            />
+                            <div className='removeBtnWrap'>
+                              <Button onClick={onRemoveImage(i)}>X</Button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  </li>
-                </ul>
-                <div className='btnWrap mt-5'>
-                  <button
-                    className='btn btn-default'
-                    type='submit'
-                    // onClick={onCategoryAdd}
-                  >
-                    Category Add
-                  </button>
-                </div>
-              </Form>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+                        ))}
+                      </div>
+                    </li>
+                  </ul>
+                  <div className='btnWrap mt-5'>
+                    <button
+                      className='btn btn-default'
+                      type='submit'
+                      // onClick={onCategoryAdd}
+                    >
+                      Category Add
+                    </button>
+                  </div>
+                </Form>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </Main>
   );
 };
 

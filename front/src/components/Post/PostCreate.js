@@ -15,14 +15,16 @@ import {
   ADD_POST_REQUEST,
   UPLOAD_POST_IMAGES_REQUEST,
   REMOVE_IMAGE,
-} from 'reducer/post';
-import useInput from 'helpers/useInput';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+} from '../../reducer/post';
+import { useHistory, useParams } from 'react-router-dom';
+import Main from '../Category/Main';
 
 const PostCreate = ({ post }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { addPostDone, imagePaths } = useSelector((state) => state.post);
+  const { addPostDone, imagePaths, categoryList } = useSelector(
+    (state) => state.post
+  );
 
   const { id } = useParams();
 
@@ -161,89 +163,90 @@ const PostCreate = ({ post }) => {
     // 카테고리 추가가 성공하면 인풋창 날리기..아니지 링크 이동?
     if (addPostDone) {
       alert('포스트가 작성되었습니다!');
-      history.push(`/admin/categories/${id}`);
+      history.push(`/categories/${id}`);
     }
   }, [addPostDone]);
 
   return (
-    <div className='pb-8 pt-2 pt-md-7'>
-      <Container className='postCreateWrap'>
-        <Form encType='multipart/form-data' onSubmit={onSubmit}>
-          <dl>
-            <dt>Category Name</dt>
-            <dd className='mt-2'></dd>
-          </dl>
-          <dl>
-            <dt> * Title : </dt>
-            <dd className='mt-2'>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='제목을 입력해주세요'
-                onChange={onChangePosts}
-                value={postContents.title}
-                name='title'
-                autoComplete='off'
-              />
-            </dd>
-          </dl>
-          <dl className='mb-4'>
-            <dt>게시글 작성</dt>
-            <dd className='mt-2'>
-              <div>
-                <ReactQuill
-                  ref={quillRef}
-                  theme='snow'
-                  placeholder='어떤 여행을 하셨나요?'
-                  value={content}
-                  onChange={setContent}
-                  modules={modules}
-                  formats={formats}
-                />
-              </div>
-            </dd>
-          </dl>
-          <dl>
-            <dt>
-              대표 이미지
-              <br />
-              (섬네일 이미지)
-            </dt>
-            <dd className='mt-2'>
-              <div className='custom-file'>
+    <Main>
+      <div className='pb-8 pt-2 pt-md-7'>
+        <Container className='postCreateWrap'>
+          <Form encType='multipart/form-data' onSubmit={onSubmit}>
+            {/* <dl>
+              <dt>Category Name</dt>
+              <dd className='mt-2'></dd>
+            </dl> */}
+            <dl>
+              <dt> * Title : </dt>
+              <dd className='mt-2'>
                 <input
-                  type='file'
-                  className='custom-file-input'
-                  id='customFileLang'
-                  lang='en'
-                  name='image'
-                  onChange={onChangeImages}
+                  type='text'
+                  className='form-control'
+                  placeholder='제목을 입력해주세요'
+                  onChange={onChangePosts}
+                  value={postContents.title}
+                  name='title'
+                  autoComplete='off'
                 />
-                <label
-                  className='custom-file-label inputStyle'
-                  for='customFileLang'
-                  onClick={onClickImageUpload}
-                >
-                  대표 섬네일 이미지를 선택해주세요
-                </label>
-              </div>
-              <div className='imageThumbnail mt-3'>
-                {imagePaths.map((v, i) => (
-                  <div key={v} style={{ display: 'inline-block' }}>
-                    <img
-                      src={`http://localhost:3003/${v}`}
-                      style={{ width: '120px', height: '120px' }}
-                      alt={v}
-                    />
-                    <div className='removeBtnWrap'>
-                      <Button onClick={onRemoveImage(i)}>X</Button>
+              </dd>
+            </dl>
+            <dl className='mb-4'>
+              <dt>게시글 작성</dt>
+              <dd className='mt-2'>
+                <div>
+                  <ReactQuill
+                    ref={quillRef}
+                    theme='snow'
+                    placeholder='어떤 여행을 하셨나요?'
+                    value={content}
+                    onChange={setContent}
+                    modules={modules}
+                    formats={formats}
+                  />
+                </div>
+              </dd>
+            </dl>
+            <dl>
+              <dt>
+                대표 이미지
+                <br />
+                (섬네일 이미지)
+              </dt>
+              <dd className='mt-2'>
+                <div className='custom-file'>
+                  <input
+                    type='file'
+                    className='custom-file-input'
+                    id='customFileLang'
+                    lang='en'
+                    name='image'
+                    onChange={onChangeImages}
+                  />
+                  <label
+                    className='custom-file-label inputStyle'
+                    for='customFileLang'
+                    onClick={onClickImageUpload}
+                  >
+                    대표 섬네일 이미지를 선택해주세요
+                  </label>
+                </div>
+                <div className='imageThumbnail mt-3'>
+                  {imagePaths.map((v, i) => (
+                    <div key={v} style={{ display: 'inline-block' }}>
+                      <img
+                        src={`http://localhost:3003/${v}`}
+                        style={{ width: '120px', height: '120px' }}
+                        alt={v}
+                      />
+                      <div className='removeBtnWrap'>
+                        <Button onClick={onRemoveImage(i)}>X</Button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </dd>
-          </dl>
-          {/* <dl>
+                  ))}
+                </div>
+              </dd>
+            </dl>
+            {/* <dl>
             <dt>공유 카테고리</dt>
             <dd className='mt-2'>
               <select
@@ -258,14 +261,15 @@ const PostCreate = ({ post }) => {
               </select>
             </dd>
           </dl> */}
-          <div className='mt-8' style={{ textAlign: 'center' }}>
-            <button type='submit' class='btn btn-primary'>
-              Submit
-            </button>
-          </div>
-        </Form>
-      </Container>
-    </div>
+            <div className='mt-8' style={{ textAlign: 'center' }}>
+              <button type='submit' class='btn btn-primary'>
+                Submit
+              </button>
+            </div>
+          </Form>
+        </Container>
+      </div>
+    </Main>
   );
 };
 

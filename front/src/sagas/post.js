@@ -237,15 +237,6 @@ function* removePost(action) {
 
 // 비동기 액션 생성 함수
 function* watchAddCategory() {
-  // take : ADD_CATEGORY_REQUEST (해당)액션이 실행되기 까지 기다리겠다.
-  // take: 단, 한번밖에 받지 않는다. 한번 실행하면 이벤트 리스너가 사라져버린다. (게시글을 하나밖에 못씀)
-  // ADD_CATEGORY_REQUEST 액션이 실행되면 addCategory 함수가 실행된다. (상단에 있음)
-  // 그래서 무한하게 실행되도록 while(true)문을 감싸서 사용한다. 원래 자바스크립트에선 금지된...코드지만 (무한실행때문에)
-  // 제네레이터 함수는 next() 로 다음 함수를 실행하기 때문에 써도 ok -> 하지만 직관적이지 않으니까
-  // 비동기 방식으로 작동하는 takeEvery를 사용한다. (while문 대체)
-  // 근데 takeEvery는 두번클릭,세번클릭하면 두번,세번이 전부 실행이 된다.
-  // 그래서 takeLatest 를 사용한다. 여러번 요청을 보내도 앞에거 다 무시하고 마지막것만 실행된다. (어휴..) -> 근데 프론트에서만 그렇게 인식한다
-  // 응답은 완료된것 하나 외에는 다 무시하지만, 요청은 무시되지 않는다는 소리 그래서 서버쪽에서 데이터 중복 검사를 따로 해주어야한다.
   yield takeLatest(ADD_CATEGORY_REQUEST, addCategory);
 }
 

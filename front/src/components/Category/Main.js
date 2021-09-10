@@ -27,45 +27,6 @@ const Main = ({ children, props }) => {
     };
   }, []);
 
-  // const getRoutes = (routes) => {
-  //   return routes.map((prop, key) => {
-  //     if (prop.layout === '/admin') {
-  //       return (
-  //         <Route
-  //           path={prop.layout + prop.path}
-  //           component={prop.component}
-  //           key={key}
-  //         />
-  //       );
-  //     } else {
-  //       return null;
-  //     }
-  //   });
-  // };
-
-  // const getBrandText = (path) => {
-  //   for (let i = 0; i < routes.length; i++) {
-  //     if (
-  //       props.location.pathname.indexOf(routes[i].layout + routes[i].path) !==
-  //       -1
-  //     ) {
-  //       return routes[i].name;
-  //     }
-  //   }
-  //   return 'Brand';
-  // };
-
-  // const getBreadcrumb = () => {
-  //   for (let i = 0; i < routes.length; i++) {
-  //     if (
-  //       props.location.pathname.indexOf(routes[i].layout + routes[i].path) !==
-  //       -1
-  //     ) {
-  //       return routes[i].breadcrumb;
-  //     }
-  //   }
-  // };
-
   // /post/view/ url 일때만 보이는 백그라운드임.
   const PostViewHeader = () => {
     if (window.location.pathname === '/admin/post/view')
@@ -81,28 +42,19 @@ const Main = ({ children, props }) => {
     <>
       <Sidebar
         {...props}
-        // routes={routes}
         logo={{
-          innerLink: '/admin/index',
+          innerLink: '/',
           imgAlt: '...',
         }}
       />
       <div className='main-content' ref={mainContent}>
-        <AdminNavbar
-          {...props}
-          // brandText={getBrandText(props.location.pathname)}
-          // breadcrumb={getBreadcrumb(props.location.pathname)}
-        />
+        <AdminNavbar {...props} />
 
         {/* post view 페이지에만 나오는 헤더영역 */}
         {PostViewHeader()}
 
         <div style={{ margin: 'auto', maxWidth: '1200px' }}>
-          <Switch>
-            {/* {getRoutes(routes)} */}
-            {children}
-            {/* <Redirect from='*' to='/admin/index' /> */}
-          </Switch>
+          <Switch>{children}</Switch>
         </div>
         <Container fluid>
           <AdminFooter />
