@@ -36,7 +36,7 @@ import {
   getLoginMember,
 } from '../../helpers/authUtils';
 import axios from 'axios';
-import { isProfileChanged } from '../../reducer/member';
+import { isProfileChanged, memberLoginUpdate } from '../../reducer/member';
 import Navigation from '../Navbars/Navigation';
 
 var ps;
@@ -105,19 +105,12 @@ const Sidebar = (props) => {
     };
   }
 
-  //사용자 로그아웃 처리 - 로컬 스토리지를 삭제한다.
+  //사용자 로그아웃 처리 - 로컬 스토리지를 삭제
   const logOut = () => {
     if (window.confirm('Are you sure to log-out?') === true) {
       window.localStorage.removeItem('jwtToken');
       window.localStorage.removeItem('loginMemberInfo');
 
-      // 쿠키 삭제하기 - 안됨
-      var deleteCookie = function (name) {
-        document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
-      };
-      deleteCookie('jwtToken');
-      deleteCookie('connect.sid');
-      // 백엔드에서 쿠키 삭제하기 - 안됨
       axios
         .post('http://localhost:3003/member/logout')
         .then((res) => {
@@ -138,11 +131,8 @@ const Sidebar = (props) => {
   const userEmail = getLoginMember().email;
   const memberId = getLoginMember().memberId;
 
-  // 로딩 시 최초 한 번 실행
+  // 로딩 시 프로필 사진, 유저 아이디
   useEffect(() => {
-    // const memberinfo = JSON.parse(localStorage.getItem('loginMemberInfo'));
-    console.log('ddddddd', memberId);
-
     axios
       .post('http://localhost:3003/member/userProfile', { userEmail })
       .then((res) => {
@@ -158,11 +148,7 @@ const Sidebar = (props) => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   if (loginSuccess) {
-  //   }
-  // }, [loginSuccess]);
-
+  // 프로필 업데이트 시 사이드바 프로필 사진 변경
   useEffect(() => {
     if (profilePicUpdate) {
       axios

@@ -13,27 +13,16 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-//각종 유틸리티 함수를 참조한다.
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory, Link, Route } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {
-  memberLoginToken,
-  memberLoginUpdate,
-  memberLogin,
-} from '../../reducer/member';
+import { memberLoginToken, memberLoginUpdate } from '../../reducer/member';
 import Auth from './Auth';
-import {
-  getJWTToken,
-  isMemberLogined,
-  getLoginMember,
-} from '../../helpers/authUtils';
+import { isMemberLogined } from '../../helpers/authUtils';
 
 const Login = () => {
-  // const emailInput = useRef();
-
   const [login, setLogin] = useState({
     email: '',
     userPwd: '',
@@ -42,13 +31,6 @@ const Login = () => {
   const history = useHistory();
   // 전역데이터 제어용 디스패치 함수 생성
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   console.log('a;lfj;wl-----', emailInput);
-  //   setTimeout(() => {
-  //     emailInput.current.focus();
-  //   }, 2000);
-  // }, []);
 
   // 로그인 여부 체크 - 로긴 했으면 메인 페이지로 이동시키기
   const isLogin = isMemberLogined('login.js');
@@ -59,53 +41,6 @@ const Login = () => {
   const onLoginChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
-
-  // 카카오 로그인을 위한 비둘기 목돌리기
-  useEffect(() => {
-    if (document.cookie) {
-      alert(document.cookie);
-      var getCookie = function (name) {
-        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-        return value ? value[2] : null;
-      };
-      const jwtToken = getCookie('jwtToken');
-      //토큰값을 웹브라우저 로컬스토리지에 보관하기
-      window.localStorage.setItem('jwtToken', jwtToken);
-      //백엔드 API 호출시 발급된 JWT토큰을 Ajax 헤더에 x-access-token 영역에 기본 포함시키기
-      axios.defaults.headers.common['x-access-token'] = `${jwtToken}`;
-      //발급된 토큰값과 로그인한 유저 정보를 전역 데이터에 반영한다.
-      dispatch(memberLoginToken(jwtToken));
-      dispatch(memberLogin(true));
-      const email = getLoginMember().email;
-      // axios
-      //   .post('http://localhost:3003/member/userProfile', email)
-      //   .then((res) => {
-      //     if (res.data.code === '200') {
-      //       //토큰값을 웹브라우저 로컬스토리지에 보관하기 - 로그인 유지하기
-      //       console.log(res.data.data);
-      //       window.localStorage.setItem(
-      //         'loginMemberInfo',
-      //         res.data.data.loginUser
-      //       );
-
-      //       //발급된 토큰값과 로그인한 유저 정보를 전역 데이터에 반영한다.
-      //       dispatch(memberLoginUpdate(res.data.data.member));
-
-      //       alert(`WELCOME, ${res.data.data.member.userName}!`);
-      history.push('/');
-      //     } else {
-      //       //서버측 에러 메시지 출력
-      //       alert(res.data.msg);
-      //     }
-      //   })
-      //   .catch(() => {});
-
-      // dispatch(memberLoginUpdate(res.data.data.member));
-      // alert(`WELCOME, ${res.data.data.member.userName}!`);
-    } else {
-      // alert('no cookie');
-    }
-  }, []);
 
   const onLogin = () => {
     // axios.defaults.withCredentials = true;
@@ -148,47 +83,8 @@ const Login = () => {
               <div className='text-muted text-center mt-2 mb-3'>
                 <big>Login</big>
               </div>
-              {/* <div className="btn-wrapper text-center">
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/github.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Github</span>
-              </Button>
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/google.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Google</span>
-              </Button>
-            </div> */}
             </CardHeader>
             <CardBody className='px-lg-5 py-lg-5'>
-              {/* <div className='text-center text-muted mb-4'>
-              <small>Or sign in with credentials</small>
-            </div> */}
               <Form role='form'>
                 <FormGroup className='mb-3'>
                   <InputGroup className='input-group-alternative'>
@@ -198,7 +94,6 @@ const Login = () => {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      // ref={emailInput}
                       name='email'
                       value={setLogin.email}
                       onChange={onLoginChange}

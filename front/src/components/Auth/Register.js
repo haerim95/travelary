@@ -1,27 +1,7 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-// reactstrap components
 import Auth from './Auth';
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
@@ -29,12 +9,11 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Row,
   Col,
 } from 'reactstrap';
 import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
   const [member, setMember] = useState({
@@ -52,7 +31,6 @@ const Register = () => {
   const userPwdRef = useRef(null);
   const emailRef = useRef(null);
   const birthdayRef = useRef(null);
-  // const pwdPass = useRef(true);
 
   // 비밀번호 재확인용 변수 업데이트
   const onPwdRepeatChange = (e) => {
@@ -88,8 +66,6 @@ const Register = () => {
       pwdCheck.classList.remove('text-muted');
       pwdCheck.innerText = 'strong';
       setPwdPass(false);
-      // pwdPass.current = false;
-      // alert(pwdPass.current.value);
     } else {
       // 통과 못했을 시 회색으로 week 뜨기
       pwdCheck.classList.add('text-muted');
@@ -120,7 +96,6 @@ const Register = () => {
             email: member.email,
           })
           .then((res) => {
-            // console.log('데이터 처리결과:', res.data);
             if (res.data.code === '200') {
               // 사용 가능한 이메일일 경우
               checkEmail.classList.add('text-success');
@@ -149,17 +124,8 @@ const Register = () => {
     }
   };
 
-  // 로그인 여부 체크 - 로긴 안했으면 로긴페이지로 이동시키기
-  // const isLogin = isMemberLogined();
-  // if (isLogin == false) {else
-  //   history.push('/member/login');
-  // }
-
   // 유효성 검사
   const registerFormCheck = () => {
-    // useRef 포커스 안됨
-    // alert(userNameRef.current.value);
-
     // 빈 칸 작성시 알림창으로 알려주기
     if (!member.userName) {
       alert('Please fill out your name!');
@@ -203,9 +169,8 @@ const Register = () => {
       axios
         .post('http://localhost:3003/member/register', member)
         .then((res) => {
-          // console.log('데이터 처리결과:', res.data);
           alert('Welcome to Travelary! Please Sign In.');
-          history.push('/auth/login');
+          history.push('/auth');
         })
         .catch(() => {});
     }
@@ -216,50 +181,6 @@ const Register = () => {
       <Auth>
         <Col lg='6' md='8'>
           <Card className='bg-secondary shadow border-0'>
-            {/* <CardHeader className='bg-transparent pb-5'>
-            <div className='text-muted text-center mt-2 mb-4'>
-              <small>Sign up with</small>
-            </div>
-            <div className='text-center'> */}
-            {/* <Link> */}
-            {/* <Button
-                className='btn-neutral btn-icon mr-4'
-                color='default'
-                href='http://localhost:3003/member/kakao'
-                // onClick={(e) => e.preventDefault()}
-                // onClick={onKakaoLogin}
-              >
-                <span className='btn-inner--icon'>
-                  <img
-                    alt='...'
-                    src={
-                      require('../../assets/img/icons/common/github.svg')
-                        .default
-                    }
-                  />
-                </span>
-                <span className='btn-inner--text'>Github</span>
-              </Button> */}
-            {/* </Link> */}
-            {/* <Button
-                className='btn-neutral btn-icon'
-                color='default'
-                href='#pablo'
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className='btn-inner--icon'>
-                  <img
-                    alt='...'
-                    src={
-                      require('../../assets/img/icons/common/google.svg')
-                        .default
-                    }
-                  />
-                </span>
-                <span className='btn-inner--text'>Google</span>
-              </Button>
-            </div>
-          </CardHeader> */}
             <CardBody className='px-lg-5 py-lg-5'>
               <div className='text-center text-muted mb-4'>
                 <big>Register</big>
@@ -310,7 +231,6 @@ const Register = () => {
                   </InputGroup>
                   {/*//! 이메일 중복 검사 */}
                   <small>
-                    {/* <span className='text-success font-weight-700'>strong</span> */}
                     <span className='checkEmail font-italic'></span>
                   </small>
                 </FormGroup>
@@ -327,7 +247,6 @@ const Register = () => {
                       onChange={onMemberChange}
                       ref={userPwdRef}
                       placeholder='Password'
-                      // placeholder='8 - 15 characters, must contain both letters and numbers'
                       type='password'
                       autoComplete='new-password'
                       autocomplete='off'
@@ -340,7 +259,6 @@ const Register = () => {
                     {/* 비밀번호 유효성 검사 */}
                     <small>
                       password strength:
-                      {/* <span className='text-success font-weight-700'>strong</span> */}
                       <span className='pwdCheck font-weight-700'></span>
                     </small>
                   </div>
@@ -388,28 +306,6 @@ const Register = () => {
                     />
                   </InputGroup>
                 </FormGroup>
-                {/* <Row className='my-4'>
-                <Col xs='12'>
-                  <div className='custom-control custom-control-alternative custom-checkbox'>
-                    <input
-                      className='custom-control-input'
-                      id='customCheckRegister'
-                      type='checkbox'
-                    />
-                    <label
-                      className='custom-control-label'
-                      htmlFor='customCheckRegister'
-                    >
-                      <span className='text-muted'>
-                        I agree with the{' '}
-                        <a href='#pablo' onClick={(e) => e.preventDefault()}>
-                          Privacy Policy
-                        </a>
-                      </span>
-                    </label>
-                  </div>
-                </Col>
-              </Row> */}
                 <div className='text-center'>
                   <Button
                     // onClick={onRegister}

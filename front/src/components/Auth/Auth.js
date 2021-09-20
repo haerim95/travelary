@@ -5,11 +5,8 @@ import { Container, Row, Col, NavbarBrand } from 'reactstrap';
 import Register from './Register';
 
 // core components
-// import AuthNavbar from './components/Navbars/AuthNavbar.js';
 import AuthFooter from '../Footers/AuthFooter.js';
 import Login from './Login';
-
-// import routes from 'routes.js';
 
 const Auth = ({ children }) => {
   const mainContent = React.useRef(null);

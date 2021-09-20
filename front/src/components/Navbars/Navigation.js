@@ -15,7 +15,7 @@ const Navigation = () => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href=''>
+          <NavLink href='/profile'>
             <i className='ni ni-single-02'></i>
             Profile
           </NavLink>
