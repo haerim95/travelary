@@ -7,11 +7,11 @@
 
 ## 프로젝트 소개 영상
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DeDLg2NXJ-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![트레블러리 소개 영상](http://img.youtube.com/vi/DeDLg2NXJ-o/0.jpg)](https://www.youtube.com/watch?v=DeDLg2NXJ-o)
 
 ## 프로젝트 시연 영상
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lfv6GsVSSkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![트레블러리 시연 영상](http://img.youtube.com/vi/lfv6GsVSSkI/0.jpg)](https://www.youtube.com/watch?v=lfv6GsVSSkI)
 
 ## Travelary 란?
 
