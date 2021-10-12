@@ -70,7 +70,7 @@ const PostList = ({ match, categoryName }) => {
                     return (
                       <Col key={post.id} lg='6' xl='4' className='postWrap'>
                         <Card className='card-stats mb-4 mb-xl-0'>
-                          <Link to={`/admin/post/${post.id}`}>
+                          <Link to={`/post/${post.id}`}>
                             <div className='imageThumbnail'>
                               <img
                                 alt='...'
@@ -79,7 +79,7 @@ const PostList = ({ match, categoryName }) => {
                             </div>
                           </Link>
                         </Card>
-                        <Link to='/admin/post/view'>
+                        <Link to='/post/view'>
                           <p>{post.title}</p>
                         </Link>
                       </Col>
